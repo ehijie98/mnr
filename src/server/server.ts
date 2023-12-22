@@ -1,6 +1,8 @@
 import express from "express";
-import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
+import os from "node:os";
 
+import config, { PORT } from "./config";
+console.log({ config })
 
 const server = express()
 
@@ -14,9 +16,10 @@ server.use("/", (req, res) => {
     });
 });
 
-server.listen("8080", "0.0.0.0", () => {
+server.listen(config.PORT, config.HOST, () => {
     console.info(
-        "Express server is listening at http://0.0.0.0:8080"
+        `Express server is listening at http://${config.HOST}/${config.PORT}`,
+        `Free Mem: ${os.freemem() / 1024 / 1024}`,
     );
 })
 
