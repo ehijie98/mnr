@@ -4,13 +4,15 @@
   "description": "Video Course (recorded August 2022): **[samer.dev/mnr](https://samer.dev/mnr)**",
   "main": "index.js",
   "scripts": {
-    "dev:server": "tsnd src/server/server.ts"
+    "dev:server": "tsnd src/server/server.ts",
+    "prettier": "prettier . --write"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "mongodb": "^6.3.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
