@@ -13,7 +13,7 @@ export const connectClient = async () => {
   await client.db(DATABASE_NAME).command({ ping: 1 });
   console.info("Connected to MongoDB");
 
-  connectedClient = client
+  connectedClient = client;
 
   return connectedClient.db(DATABASE_NAME);
 };
@@ -21,4 +21,3 @@ export const connectClient = async () => {
 export const stopClient = async () => {
   await connectedClient?.close();
 };
-
