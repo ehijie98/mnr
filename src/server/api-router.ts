@@ -10,18 +10,29 @@ router.get("/contests", async (req, res) => {
   // get the data from MongoDB
   const client = await connectClient();
 
-  const contestsArray = await client
+  const contests = await client
     .collection("contests")
     .find()
     .project({
       id: 1,
       categoryName: 1,
       contestName: 1,
+      _id: 0,
     })
     .toArray();
-  res.send({ contests: contestsArray });
+  res.send({ contests });
 });
 
-// router.get("/contest")
+router.get("/contest/:contestId", async (req, res) => {
+  console.log(req.params.contestId);
+
+  const client = await connectClient();
+
+  const contest = await client
+    .collection("contests")
+    .findOne({ id: req.params.contestId });
+
+  res.send({ contest });
+});
 
 export default router;

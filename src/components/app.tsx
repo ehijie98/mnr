@@ -2,7 +2,7 @@ import ContestList from "./contest-list";
 import Header from "./header";
 
 const App = ({ initialData }) => {
-  console.log(initialData);
+  // console.log(initialData);
   return (
     <div className="container">
       <Header message="Naming Contests" />
