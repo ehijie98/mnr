@@ -7,11 +7,9 @@ const ContestList = ({ initialContests }) => {
   const [contests, setContests] = useState(initialContests);
 
   useEffect(() => {
-    fetchContests().then((data) => {
-      // state
-      console.log(data.contests);
-      setContests(data.contests);
-    });
+    // fetchContests().then((contests) => {
+    //   setContests(contests);
+    // });
   }, []);
   return (
     <div className="contest-list">
