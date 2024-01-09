@@ -2,16 +2,22 @@ import { fetchContest } from "../api-client";
 import { useState, useEffect } from "react";
 import Header from "./header";
 
-const Contest = ({ initialContest }) => {
+const Contest = ({ initialContest, onContestListClick }) => {
   const [contest, setContest] = useState(initialContest);
 
   useEffect(() => {
-    if (!contest.names)  {
+    if (!contest.names) {
       fetchContest(contest.id).then((contest) => {
         setContest(contest);
       });
     }
   }, [contest.id, contest.names]);
+
+  const handleClickContestList = (event) => {
+    event.preventDefault();
+
+    onContestListClick();
+  };
 
   return (
     <>
@@ -19,6 +25,14 @@ const Contest = ({ initialContest }) => {
       <div className="contest">
         <div className="title">Contest Description</div>
         <div className="description">{contest.description}</div>
+
+        <a
+          href="/"
+          className="link"
+          onClick={handleClickContestList}
+        >
+          Contest List
+        </a>
       </div>
     </>
   );

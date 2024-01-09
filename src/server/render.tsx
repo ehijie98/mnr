@@ -10,10 +10,10 @@ const serverRender = async (req) => {
     : { contests: await fetchContestList() };
 
   const initialMarkup = ReactDomServer.renderToString(
-    <App initialData={ initialData } />,
+    <App initialData={initialData} />,
   );
 
-  console.log(initialData)
+  console.log(initialData);
 
   return { initialMarkup, initialData };
 };

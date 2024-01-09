@@ -23,7 +23,7 @@ const App = ({ initialData }) => {
         : "contestList";
       setPage(newPage);
       // mimicking fake object having changed useState from currentContestId to currentContest
-      setCurrentContest({id: event.state?.contestId});
+      setCurrentContest({ id: event.state?.contestId });
     };
   }, []);
 
@@ -35,7 +35,13 @@ const App = ({ initialData }) => {
       `contest/${contestId}`,
     );
     setPage("contest");
-    setCurrentContest({id: contestId});
+    setCurrentContest({ id: contestId });
+  };
+
+  const navigateToContestList = () => {
+    window.history.pushState({}, "", "/");
+    setPage("contestList");
+    setCurrentContest(undefined);
   };
 
   const pageContent = () => {
@@ -49,7 +55,12 @@ const App = ({ initialData }) => {
           />
         );
       case "contest":
-        return <Contest initialContest={currentContest} />;
+        return (
+          <Contest
+            initialContest={currentContest}
+            onContestListClick={navigateToContestList}
+          />
+        );
     }
   };
 

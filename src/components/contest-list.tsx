@@ -5,17 +5,17 @@ import Header from "./header";
 import ContestPreview from "./contest-preview";
 
 const ContestList = ({ initialContests, onContestClick }) => {
-  const [contests, setContests] = useState(initialContests);
+  const [contests, setContests] = useState(initialContests ?? []);
 
-  // useEffect(() => {
-  //   if(!contests) {
-  //     fetchContestList().then((contests) => {
-  //       setContests(contests);
-  //     });
-  //   }
-    
-  // }, [contests]);
-  
+  useEffect(() => {
+    if(!initialContests) {
+      fetchContestList().then((contests) => {
+        setContests(contests);
+      });
+    }
+
+  }, [initialContests]);
+
   return (
     <>
       <Header message="Naming Contests" />
