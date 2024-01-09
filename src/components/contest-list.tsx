@@ -7,11 +7,15 @@ import ContestPreview from "./contest-preview";
 const ContestList = ({ initialContests, onContestClick }) => {
   const [contests, setContests] = useState(initialContests);
 
-  useEffect(() => {
-    // fetchContestList().then((contests) => {
-    //   setContests(contests);
-    // });
-  }, []);
+  // useEffect(() => {
+  //   if(!contests) {
+  //     fetchContestList().then((contests) => {
+  //       setContests(contests);
+  //     });
+  //   }
+    
+  // }, [contests]);
+  
   return (
     <>
       <Header message="Naming Contests" />
