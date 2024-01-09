@@ -24,8 +24,6 @@ router.get("/contests", async (req, res) => {
 });
 
 router.get("/contest/:contestId", async (req, res) => {
-  console.log(req.params.contestId);
-
   const client = await connectClient();
 
   const contest = await client
