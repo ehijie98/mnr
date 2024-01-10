@@ -4,6 +4,8 @@ import Header from "./header";
 
 const Contest = ({ initialContest, onContestListClick }) => {
   const [contest, setContest] = useState(initialContest);
+  const [newProposedName, setNewProposedName] = useState("");
+
 
   useEffect(() => {
     if (!contest.names) {
@@ -19,12 +21,53 @@ const Contest = ({ initialContest, onContestListClick }) => {
     onContestListClick();
   };
 
+  const handleNewNameSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const handleProposedNameChange = (event) => {
+    event.preventDefault();
+
+    setNewProposedName(event.target.value)
+  }
+
+
   return (
     <>
       <Header message={contest.contestName} />
       <div className="contest">
         <div className="title">Contest Description</div>
         <div className="description">{contest.description}</div>
+
+        <div className="title">Proposed Names</div>
+        <div className="body">
+          {contest.names?.length > 0 ? (
+            <div className="list">
+              {contest.names.map((proposedName) => (
+                <div key={proposedName.id} className="item">
+                  {proposedName.name}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>No names proposed yet</div>
+          )}
+        </div>
+
+        <div className="title">Propose a new name...</div>
+        <div className="body">
+          <form onSubmit={handleNewNameSubmit}>
+            <input
+              type="text"
+              name="newName"
+              placeholder="New Name Here.."
+              value = {newProposedName}
+              onChange = {handleProposedNameChange}
+              
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
 
         <a
           href="/"

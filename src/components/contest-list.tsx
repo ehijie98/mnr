@@ -5,15 +5,16 @@ import Header from "./header";
 import ContestPreview from "./contest-preview";
 
 const ContestList = ({ initialContests, onContestClick }) => {
-  const [contests, setContests] = useState(initialContests ?? []);
+  const [contests, setContests] = useState(
+    initialContests ?? [],
+  );
 
   useEffect(() => {
-    if(!initialContests) {
+    if (!initialContests) {
       fetchContestList().then((contests) => {
         setContests(contests);
       });
     }
-
   }, [initialContests]);
 
   return (
