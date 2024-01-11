@@ -28,7 +28,8 @@ const Contest = ({ initialContest, onContestListClick }) => {
       newNameValue: newProposedName,
     });
 
-    console.log(updatedContest);
+    setContest(updatedContest);
+    setNewProposedName("")
   };
 
   const handleProposedNameChange = (event) => {
