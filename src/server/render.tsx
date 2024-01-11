@@ -13,8 +13,6 @@ const serverRender = async (req) => {
     <App initialData={initialData} />,
   );
 
-  console.log(initialData);
-
   return { initialMarkup, initialData };
 };
 

@@ -4,7 +4,10 @@ import cors from "cors";
 import { connectClient } from "./db";
 
 const router = express.Router();
+
+// middleware
 router.use(cors());
+router.use(express.json());
 
 router.get("/contests", async (req, res) => {
   // get the data from MongoDB
@@ -31,6 +34,30 @@ router.get("/contest/:contestId", async (req, res) => {
     .findOne({ id: req.params.contestId });
 
   res.send({ contest });
+});
+
+router.post("/contest/:contestId", async (req, res) => {
+  const client = await connectClient();
+
+  const { newNameValue } = req.body;
+
+  const updatedContest = await client
+    .collection("contests")
+    .findOneAndUpdate(
+      { id: req.params.contestId },
+      {
+        $push: {
+          names: {
+            id: newNameValue.toLowerCase().replace(/\s/g, "-"),
+            name: newNameValue,
+            timestamp: new Date(),
+          },
+        },
+      },
+      { returnDocument: "after" },
+    );
+
+  res.send({ updatedContest });
 });
 
 export default router;

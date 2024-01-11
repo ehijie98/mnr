@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { API_SERVER_URL } from "./public-config";
 
 export const fetchContestList = async () => {
@@ -13,4 +14,17 @@ export const fetchContest = async (contestId) => {
   );
 
   return resp.data.contest;
+};
+
+export const addNewNameToContest = async ({
+  contestId,
+  newNameValue,
+}) => {
+  const resp = await axios.post(
+    `${API_SERVER_URL}/contest/${contestId}`,
+    { newNameValue },
+  );
+
+  console.log(resp.data);
+  return resp.data.updatedContest;
 };

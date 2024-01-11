@@ -2,7 +2,7 @@ import * as React from "react";
 
 const ContestPreview: React.FC<{
   contest: object;
-  onClick: any;
+  onDiffClick: any;
 }> = ({ contest, onDiffClick }) => {
   const handleClick = (event) => {
     event.preventDefault();

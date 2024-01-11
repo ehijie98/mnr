@@ -17,7 +17,6 @@ const App = ({ initialData }) => {
   useEffect(() => {
     // working with history API
     window.onpopstate = (event) => {
-      console.log(event);
       const newPage = event.state?.contestId
         ? "contest"
         : "contestList";

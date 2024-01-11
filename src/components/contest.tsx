@@ -1,11 +1,11 @@
 import { fetchContest } from "../api-client";
 import { useState, useEffect } from "react";
+import { addNewNameToContest } from "../api-client";
 import Header from "./header";
 
 const Contest = ({ initialContest, onContestListClick }) => {
   const [contest, setContest] = useState(initialContest);
   const [newProposedName, setNewProposedName] = useState("");
-
 
   useEffect(() => {
     if (!contest.names) {
@@ -21,16 +21,22 @@ const Contest = ({ initialContest, onContestListClick }) => {
     onContestListClick();
   };
 
-  const handleNewNameSubmit = (event) => {
+  const handleNewNameSubmit = async (event) => {
     event.preventDefault();
+    const updatedContest = await addNewNameToContest({
+      contestId: contest.id,
+      newNameValue: newProposedName,
+    });
+
+    console.log(updatedContest);
   };
 
   const handleProposedNameChange = (event) => {
     event.preventDefault();
 
-    setNewProposedName(event.target.value)
-  }
-
+    setNewProposedName(event.target.value);
+    // console.log(newProposedName);
+  };
 
   return (
     <>
@@ -61,9 +67,8 @@ const Contest = ({ initialContest, onContestListClick }) => {
               type="text"
               name="newName"
               placeholder="New Name Here.."
-              value = {newProposedName}
-              onChange = {handleProposedNameChange}
-              
+              value={newProposedName}
+              onChange={handleProposedNameChange}
             />
             <button type="submit">Submit</button>
           </form>
