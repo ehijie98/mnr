@@ -29,14 +29,13 @@ const Contest = ({ initialContest, onContestListClick }) => {
     });
 
     setContest(updatedContest);
-    setNewProposedName("")
+    setNewProposedName("");
   };
 
   const handleProposedNameChange = (event) => {
     event.preventDefault();
 
     setNewProposedName(event.target.value);
-    // console.log(newProposedName);
   };
 
   return (

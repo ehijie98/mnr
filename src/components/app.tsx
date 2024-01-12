@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import ContestList from "./contest-list";
 import Contest from "./contest";
+import AddNewContest from "./add-new-contest";
 
 // page: contestList, contest
 
@@ -43,15 +44,29 @@ const App = ({ initialData }) => {
     setCurrentContest(undefined);
   };
 
+
+  const onNewContest = (newContest) => {
+    window.history.pushState(
+      {contestId: newContest.id},
+      "",
+      `/contest/${newContest.id}` 
+    );
+    setPage("contest")
+    setCurrentContest({ id: newContest.id});
+  }
+
   const pageContent = () => {
     switch (page) {
       case "contestList":
         return (
+          <>
           <ContestList
             initialContests={initialData.contests}
             // props drilling, rather use React context
             onContestClick={navigateToContest}
           />
+          <AddNewContest onSuccess={onNewContest} />
+          </>
         );
       case "contest":
         return (

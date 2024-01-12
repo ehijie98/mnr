@@ -60,4 +60,27 @@ router.post("/contest/:contestId", async (req, res) => {
   res.send({ updatedContest });
 });
 
+router.post("/contests", async (req, res) => {
+  const client = await connectClient();
+
+  const {contestName, categoryName, description} = req.body;
+
+  const updatedContestList = await client
+    .collection("contests")
+    .insertOne({
+      id: contestName.toLowerCase().replace(/\s/g, "-"),
+      contestName,
+      categoryName,
+      description,
+      names: [],
+    });
+
+    const newContest = await client
+      .collection("contests")
+      .findOne({_id: updatedContestList.insertedId});
+
+    res.send({newContest})
+
+})
+
 export default router;

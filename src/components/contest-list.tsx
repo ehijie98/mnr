@@ -4,7 +4,7 @@ import Header from "./header";
 
 import ContestPreview from "./contest-preview";
 
-const ContestList = ({ initialContests, onContestClick }) => {
+const ContestList = ({ initialContests, onContestClick}) => {
   const [contests, setContests] = useState(
     initialContests ?? [],
   );
@@ -16,6 +16,7 @@ const ContestList = ({ initialContests, onContestClick }) => {
       });
     }
   }, [initialContests]);
+
 
   return (
     <>
